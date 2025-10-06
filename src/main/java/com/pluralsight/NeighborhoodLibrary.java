@@ -22,6 +22,13 @@ public class NeighborhoodLibrary {
 
     }
 
+    public static int askUserInt(String question) {
+        System.out.println(question);
+        int response = myScanner.nextInt();
+        myScanner.nextLine(); // eat the line
+        return response;
+    }
+
     public static void showAvailable() {
 
     }
