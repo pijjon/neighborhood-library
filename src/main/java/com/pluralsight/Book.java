@@ -21,7 +21,8 @@ public class Book {
     }
 
     public void checkIn() {
-
+        this.setCheckedOutTo("");
+        this.setIsCheckedOut(false);
     }
 
     public int getId() {
