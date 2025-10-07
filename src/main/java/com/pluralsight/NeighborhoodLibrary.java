@@ -88,7 +88,7 @@ public class NeighborhoodLibrary {
                 }
             }
 
-            //prompt user for a selection
+            // prompt user for a selection
             String response = askUserStr("""
                     Select a book to check out
                     or
@@ -100,8 +100,7 @@ public class NeighborhoodLibrary {
             // if user selects "x" then we exit to home, else we prompt user for their name and checkOut the book they selected without relooping
             if (response.equalsIgnoreCase("x")) {
                 isRunning = false;
-            }
-            else {
+            } else {
                 String name = askUserStr("What is your name?");
                 available[Integer.parseInt(response) - 1].checkOut(name);
 
@@ -110,13 +109,33 @@ public class NeighborhoodLibrary {
     }
 
     public static void showCheckedOut() {
-        String response = askUserStr("""
-                Checked Out Books
-                
-                X - Exit to Home
-                or
-                C - Check in one of these books:
-                """);
+
+        boolean isRunning = true;
+
+        while (isRunning) {
+            System.out.println("Returning a Book?");
+            Book[] checkedOut = new Book[inventory.length];
+            int checkedCount = 0;
+
+            String response = askUserStr("""
+                    C - Check in a book
+                    X - Exit to Home
+                    """);
+
+            if (response.equalsIgnoreCase("c")) {
+                for (Book book : inventory) {
+                    if (book.getIsCheckedOut()) {
+                        checkedOut[checkedCount++] = book;
+                        System.out.printf("\n%d) ID: %d Title: %s ISBN: %s", checkedCount, book.getId(), book.getTitle(), book.getIsbn());
+                    }
+                }
+                int index = askUserInt("Select the book you want to check in") - 1;
+                checkedOut[index].checkIn();
+            }
+            else if (response.equalsIgnoreCase("x")){
+                isRunning = false;
+            }
+        }
     }
 
     public static Scanner myScanner = new Scanner(System.in);
