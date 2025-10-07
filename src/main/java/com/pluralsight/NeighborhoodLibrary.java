@@ -70,7 +70,9 @@ public class NeighborhoodLibrary {
         System.out.println("Available Books");
         while (isRunning) {
             for (Book book : inventory) {
-                System.out.printf("ID: %d Title: %s ISBN: %s", book.getId(), book.getTitle(), book.getIsbn());
+                if (!book.getIsCheckedOut()) {
+                    System.out.printf("\n ID: %d Title: %s ISBN: %s", book.getId(), book.getTitle(), book.getIsbn());
+                }
             }
             String response = askUserStr("""
                     X - Exit to Home
@@ -80,8 +82,7 @@ public class NeighborhoodLibrary {
 
             if (response.equalsIgnoreCase("x")) {
                 isRunning = false;
-            }
-            else {
+            } else {
                 String name = askUserStr("What is your name?");
                 for (Book book : inventory) {
                     if (book.getId() == Integer.getInteger(response)) {
