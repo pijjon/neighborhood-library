@@ -9,7 +9,26 @@ public class NeighborhoodLibrary {
     public static Book[] inventory = new Book[20];
 
     public static void main(String[] args) {
-
+        inventory[0] = new Book(1, "978-0143127741", "The Martian", false, null);
+        inventory[1] = new Book(2, "978-0062316097", "Sapiens", true, "Alice");
+        inventory[2] = new Book(3, "978-0553382563", "The Road", false, null);
+        inventory[3] = new Book(4, "978-0307887443", "Ready Player One", true, "Bob");
+        inventory[4] = new Book(5, "978-0385545969", "Project Hail Mary", false, null);
+        inventory[5] = new Book(6, "978-1501124020", "The Silent Patient", true, "Charlie");
+        inventory[6] = new Book(7, "978-0451524935", "1984", false, null);
+        inventory[7] = new Book(8, "978-0743273565", "The Great Gatsby", true, "Dana");
+        inventory[8] = new Book(9, "978-0060850524", "Brave New World", false, null);
+        inventory[9] = new Book(10, "978-0141182803", "Animal Farm", true, "Evan");
+        inventory[10] = new Book(11, "978-0061120084", "To Kill a Mockingbird", false, null);
+        inventory[11] = new Book(12, "978-0140449136", "The Odyssey", true, "Fiona");
+        inventory[12] = new Book(13, "978-0143039433", "The Kite Runner", false, null);
+        inventory[13] = new Book(14, "978-0060853983", "The Alchemist", true, "George");
+        inventory[14] = new Book(15, "978-0307277671", "The Girl with the Dragon Tattoo", false, null);
+        inventory[15] = new Book(16, "978-0374533557", "The Power of Habit", true, "Hannah");
+        inventory[16] = new Book(17, "978-0142424179", "The Fault in Our Stars", false, null);
+        inventory[17] = new Book(18, "978-0385537858", "Inferno", true, "Ian");
+        inventory[18] = new Book(19, "978-0525555374", "Where the Crawdads Sing", false, null);
+        inventory[19] = new Book(20, "978-0143038412", "Life of Pi", true, "Julia");
         home();
     }
 
