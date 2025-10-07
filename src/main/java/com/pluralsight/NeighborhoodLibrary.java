@@ -66,37 +66,47 @@ public class NeighborhoodLibrary {
     }
 
     public static void showAvailable() {
-        boolean isRunning = true;
-        System.out.println("Available Books");
+        boolean isRunning = true; // boolean flag to keep display running UNTIL user exits
+
+
+        // while loop constantly displays the screen until user exits back to home
         while (isRunning) {
+            // header for screen
+            System.out.println("Available Books");
+
+            // create new array for list of available books for more time efficient manipulation later
+            Book[] available = new Book[inventory.length];
+
+            // keep track of how many books are in the array
+            int availableCount = 0;
+
+            // iterate through book array and fill available array if book is not checked out + display available books
             for (Book book : inventory) {
                 if (!book.getIsCheckedOut()) {
-                    System.out.printf("\n ID: %d Title: %s ISBN: %s", book.getId(), book.getTitle(), book.getIsbn());
+                    available[availableCount++] = book;
+                    System.out.printf("\n%d) ID: %d Title: %s ISBN: %s", availableCount, book.getId(), book.getTitle(), book.getIsbn());
                 }
             }
+
+            //prompt user for a selection
             String response = askUserStr("""
-                    X - Exit to Home
+                    Select a book to check out
                     or
-                    To check out a book, provide the ID:
+                    X - Exit to Home
+                    
+                    Select:
                     """);
 
+            // if user selects "x" then we exit to home, else we prompt user for their name and checkOut the book they selected without relooping
             if (response.equalsIgnoreCase("x")) {
                 isRunning = false;
-            } else {
-                String name = askUserStr("What is your name?");
-                for (Book book : inventory) {
-                    if (book.getId() == Integer.getInteger(response)) {
-                        book.checkOut(name);
-                    }
-                }
             }
+            else {
+                String name = askUserStr("What is your name?");
+                available[Integer.parseInt(response) - 1].checkOut(name);
 
-
+            }
         }
-
-        // checkout the book, then prompt user if they wanna check out another book
-        // if yes, showAvailable();
-        // else return;
     }
 
     public static void showCheckedOut() {
